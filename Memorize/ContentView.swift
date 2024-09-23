@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis = ["👻","🎃","🕷️","😈","💀","🕸️","🧙‍♀️","🙀","👹","😱","☠️","🍭"]
+    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
+    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
+    let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
+    @State var emojis = ["Ace", "Jack", "Queen", "King"]
     
     @State var cardCount: Int = 4
     
@@ -34,16 +37,6 @@ struct ContentView: View {
         .foregroundColor(.orange)
     }
     
-    var cardCountAdjusters: some View {
-        HStack {
-            cardRemover
-            Spacer()
-            cardAdder
-        }
-        .imageScale(.large)
-        .font(.largeTitle)
-    }
-    
     var themes: some View {
         HStack {
             theme1
@@ -56,27 +49,10 @@ struct ContentView: View {
         .font(.title3)
     }
     
-    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
-        Button(action: {
-            cardCount += offset
-        }, label: {
-            Image(systemName: symbol)
-        })
-        .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
-    }
-    
-    var cardRemover: some View {
-        cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-    }
-    
-    var cardAdder: some View {
-        cardCountAdjuster(by: +1, symbol: "rectangle.stack.badge.plus.fill")
-    }
-    
-    func themeChooser(symbol: String, name: String) -> some View {
+    func themeChooser(emojis: [String], symbol: String, name: String) -> some View {
         VStack {
             Button(action: {
-                
+                self.emojis = emojis
             }, label: {
                 Image(systemName: symbol)
             })
@@ -85,15 +61,15 @@ struct ContentView: View {
     }
     
     var theme1: some View {
-        themeChooser(symbol: "figure.run", name: "Sports")
+        themeChooser(emojis: sportsEmojis, symbol: "figure.run", name: "Sports")
     }
     
     var theme2: some View {
-        themeChooser(symbol: "wind", name: "ATLA")
+        themeChooser(emojis: atlaEmojis, symbol: "wind", name: "ATLA")
     }
     
     var theme3: some View {
-        themeChooser(symbol: "fork.knife", name: "Food")
+        themeChooser(emojis: foodEmojis, symbol: "fork.knife", name: "Food")
     }
 }
 
