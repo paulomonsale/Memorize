@@ -14,11 +14,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text("Memorize!").font(.largeTitle)
             ScrollView {
                 cards
             }
             Spacer()
-            cardCountAdjusters
+            themes
         }
         .padding()
     }
@@ -43,6 +44,18 @@ struct ContentView: View {
         .font(.largeTitle)
     }
     
+    var themes: some View {
+        HStack {
+            theme1
+            Spacer()
+            theme2
+            Spacer()
+            theme3
+        }
+        .imageScale(.large)
+        .font(.title3)
+    }
+    
     func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
         Button(action: {
             cardCount += offset
@@ -58,6 +71,29 @@ struct ContentView: View {
     
     var cardAdder: some View {
         cardCountAdjuster(by: +1, symbol: "rectangle.stack.badge.plus.fill")
+    }
+    
+    func themeChooser(symbol: String, name: String) -> some View {
+        VStack {
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: symbol)
+            })
+            Text(name).font(.footnote)
+        }
+    }
+    
+    var theme1: some View {
+        themeChooser(symbol: "figure.run", name: "Sports")
+    }
+    
+    var theme2: some View {
+        themeChooser(symbol: "wind", name: "ATLA")
+    }
+    
+    var theme3: some View {
+        themeChooser(symbol: "fork.knife", name: "Food")
     }
 }
 
