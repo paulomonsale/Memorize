@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
-    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
-    let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
-    @State var emojis = ["Ace", "Jack", "Queen", "King"]
+    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
+        ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
+    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷","💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
+    let foodEmojis =
+        ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
+        ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
+    @State var emojis = [""]
     
-    @State var cardCount: Int = 4
+    @State var cardCount: Int = 0
     
     var body: some View {
         VStack {
@@ -53,6 +56,8 @@ struct ContentView: View {
         VStack {
             Button(action: {
                 self.emojis = emojis
+                self.cardCount = emojis.count
+                self.emojis.shuffle()
             }, label: {
                 Image(systemName: symbol)
             })
@@ -75,7 +80,7 @@ struct ContentView: View {
 
 struct CardView: View {
     let content: String
-    @State var isFaceUp = true
+    @State var isFaceUp = false
     
     var body: some View {
         ZStack {
