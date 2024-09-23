@@ -14,10 +14,8 @@ struct ContentView: View {
     let foodEmojis =
         ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
         ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
-    @State var emojis = [""]
-    
-    @State var cardCount: Int = 0
-    
+    @State var emojis: Array<String> = []
+        
     var body: some View {
         VStack {
             Text("Memorize!").font(.largeTitle)
@@ -31,33 +29,29 @@ struct ContentView: View {
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
-            ForEach(0..<cardCount, id: \.self) { index in
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 65), spacing: 4)], spacing: 4) {
+            ForEach(0..<emojis.count, id: \.self) { index in
                 CardView(content: emojis[index])
-                    .aspectRatio(2/3, contentMode: .fit)
+                    .aspectRatio(2/3, contentMode: .fill)
             }
         }
-        .foregroundColor(.orange)
+        .foregroundColor(.blue)
     }
     
     var themes: some View {
-        HStack {
+        HStack(spacing: 80) {
             theme1
-            Spacer()
             theme2
-            Spacer()
             theme3
         }
         .imageScale(.large)
-        .font(.title3)
+        .font(.title2)
     }
     
-    func themeChooser(emojis: [String], symbol: String, name: String) -> some View {
+    func themeChooser(cardSet: [String], symbol: String, name: String) -> some View {
         VStack {
             Button(action: {
-                self.emojis = emojis
-                self.cardCount = emojis.count
-                self.emojis.shuffle()
+                emojis = cardSet.shuffled()
             }, label: {
                 Image(systemName: symbol)
             })
@@ -66,15 +60,15 @@ struct ContentView: View {
     }
     
     var theme1: some View {
-        themeChooser(emojis: sportsEmojis, symbol: "figure.run", name: "Sports")
+        themeChooser(cardSet: sportsEmojis, symbol: "figure.run", name: "Sports")
     }
     
     var theme2: some View {
-        themeChooser(emojis: atlaEmojis, symbol: "wind", name: "ATLA")
+        themeChooser(cardSet: atlaEmojis, symbol: "wind", name: "ATLA")
     }
     
     var theme3: some View {
-        themeChooser(emojis: foodEmojis, symbol: "fork.knife", name: "Food")
+        themeChooser(cardSet: foodEmojis, symbol: "fork.knife", name: "Food")
     }
 }
 
