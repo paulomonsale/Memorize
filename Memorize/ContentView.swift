@@ -15,6 +15,7 @@ struct ContentView: View {
         ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
         ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
     @State var emojis: Array<String> = []
+    @State var cardColor: Color = .black
         
     var body: some View {
         VStack {
@@ -35,11 +36,11 @@ struct ContentView: View {
                     .aspectRatio(2/3, contentMode: .fill)
             }
         }
-        .foregroundColor(.blue)
+        .foregroundColor(cardColor)
     }
     
     var themes: some View {
-        HStack(spacing: 80) {
+        HStack(alignment: .lastTextBaseline, spacing: 80) {
             theme1
             theme2
             theme3
@@ -48,10 +49,11 @@ struct ContentView: View {
         .font(.title2)
     }
     
-    func themeChooser(cardSet: [String], symbol: String, name: String) -> some View {
-        VStack {
+    func themeChooser(cardSet: [String], symbol: String, name: String, color: Color) -> some View {
+        VStack() {
             Button(action: {
                 emojis = cardSet.shuffled()
+                cardColor = color
             }, label: {
                 Image(systemName: symbol)
             })
@@ -60,15 +62,15 @@ struct ContentView: View {
     }
     
     var theme1: some View {
-        themeChooser(cardSet: sportsEmojis, symbol: "figure.run", name: "Sports")
+        themeChooser(cardSet: sportsEmojis, symbol: "figure.run", name: "Sports", color: .green)
     }
     
     var theme2: some View {
-        themeChooser(cardSet: atlaEmojis, symbol: "wind", name: "ATLA")
+        themeChooser(cardSet: atlaEmojis, symbol: "wind", name: "ATLA", color: .cyan)
     }
     
     var theme3: some View {
-        themeChooser(cardSet: foodEmojis, symbol: "fork.knife", name: "Food")
+        themeChooser(cardSet: foodEmojis, symbol: "fork.knife", name: "Food", color: .red)
     }
 }
 
