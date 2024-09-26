@@ -15,7 +15,8 @@ class EmojiMemoryGame: ObservableObject {
     let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
                       ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
 
-    private static var emojis = [""]
+    private static var emojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
+                                 ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
     
     private static func createMemoryGame() -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: 10) { pairIndex in
