@@ -8,18 +8,18 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
-    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
-                        ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
-    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"
-                      ,"💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
-    let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
-                      ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
-
+//    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
+//                        ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
+//    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"
+//                      ,"💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
+//    let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
+//                      ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
+//
     private static var emojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
                                  ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
     
     private static func createMemoryGame() -> MemoryGame<String> {
-        return MemoryGame(numberOfPairsOfCards: 10) { pairIndex in
+        return MemoryGame(numberOfPairsOfCards: 12) { pairIndex in
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
             } else {
@@ -36,26 +36,30 @@ class EmojiMemoryGame: ObservableObject {
     
     // MARK: - Intents
     
-    func shuffle() {
-        model.shuffle()
+    func startNewGame() {
+        model = EmojiMemoryGame.createMemoryGame()
     }
+    
+//    func shuffle() {
+//        model.shuffle()
+//    }
     
     func choose(_ card: MemoryGame<String>.Card) {
         model.choose(card)
     }
     
-    func changeTheme(_ theme: String) {
-        switch theme {
-        case "sports":
+//    func changeTheme(_ theme: String) {
+//        switch theme {
+//        case "sports":
 //            emojis = sportsEmojis
-            break
-        case "atla":
+//            break
+//        case "atla":
 //            emojis = atlaEmojis
-            break
-        case "food":
+//            break
+//        case "food":
 //            emojis = foodEmojis
-            break
-        default: break
-        }
-    }
+//            break
+//        default: break
+//        }
+//    }
 }
