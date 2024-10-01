@@ -9,19 +9,10 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-    
-//    let sportsEmojis = ["⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"
-//                        ,"⚽️","🏀","🎾","⚾️","🏈","🏊‍♀️","🏌️‍♂️","🏐","🚴‍♂️","🏄‍♀️","🏃‍♂️","🤺"]
-//    let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"
-//                      ,"💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
-//    let foodEmojis =
-//        ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
-//         ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
     @State var cardColor: Color = .blue
         
     var body: some View {
         VStack {
-//            Text("Memorize!").font(.largeTitle)
             ScrollView {
                 cards
                     .animation(.default, value: viewModel.cards)
@@ -31,12 +22,6 @@ struct EmojiMemoryGameView: View {
                 viewModel.startNewGame()
             }
             .font(.largeTitle)
-//            Spacer()
-//            Button("Shuffle") {
-//                viewModel.shuffle()
-//            }
-//            Spacer()
-//            themes
         }
         .padding()
     }
@@ -54,41 +39,6 @@ struct EmojiMemoryGameView: View {
         }
         .foregroundColor(cardColor)
     }
-    
-//    var themes: some View {
-//        HStack(alignment: .lastTextBaseline, spacing: 80) {
-//            theme1
-//            theme2
-//            theme3
-//        }
-//        .imageScale(.large)
-//        .font(.title2)
-//    }
-    
-//    func themeChooser(_ theme: String, symbol: String, name: String, color: Color) -> some View {
-//        VStack() {
-//            Button(action: {
-//                viewModel.changeTheme(_: theme)
-//                viewModel.shuffle()
-//                cardColor = color
-//            }, label: {
-//                Image(systemName: symbol)
-//            })
-//            Text(name).font(.footnote)
-//        }
-//    }
-    
-//    var theme1: some View {
-//        themeChooser(_: "sports", symbol: "figure.run", name: "Sports", color: .green)
-//    }
-//    
-//    var theme2: some View {
-//        themeChooser(_: "atla", symbol: "wind", name: "ATLA", color: .cyan)
-//    }
-//    
-//    var theme3: some View {
-//        themeChooser(_: "food", symbol: "fork.knife", name: "Food", color: .red)
-//    }
 }
 
 struct CardView: View {

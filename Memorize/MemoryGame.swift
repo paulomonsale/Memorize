@@ -45,13 +45,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     mutating func shuffle() {
         cards.shuffle()
     }
-    
-//    func changeTheme() {
-//        
-//    }
-    
+        
     struct Card: Equatable, Identifiable, CustomDebugStringConvertible {
-        var isFaceUp = true
+        var isFaceUp = false
         var isMatched = false
         let content: CardContent
         
@@ -59,13 +55,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var debugDescription: String {
             "\(id): \(content) \(isFaceUp ? "up" : "down")\(isMatched ? " matched" : "")"
         }
-    }
-    
-    struct Theme {
-        let name = ""
-        let emojis = [""]
-        let numberOfPairs: Int
-        let color = ""
     }
 }
 
