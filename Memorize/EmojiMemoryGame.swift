@@ -12,14 +12,21 @@ class EmojiMemoryGame: ObservableObject {
     static let atlaEmojis = ["💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷","💧","🪨","🔥","💨","🪭","🪃","🌵","🐉","🍵","⚡️","🗺️","🩸","🪷"]
     static let foodEmojis = ["🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"
         ,"🍣","🍕","🌮","🥟","🍔","🥭","🥞","🍜","🍿","🍨","🧋"]
-
+    static var cardColor: Color = .black
+    
     private static func createMemoryGame(themeNum: Int) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: 12) { pairIndex in
             var emojis = [""]
             switch themeNum {
-            case 1: emojis = sportsEmojis
-            case 2: emojis = atlaEmojis
-            case 3: emojis = foodEmojis
+            case 1:
+                emojis = sportsEmojis
+                cardColor = .green
+            case 2:
+                emojis = atlaEmojis
+                cardColor = .cyan
+            case 3:
+                emojis = foodEmojis
+                cardColor = .red
             default: break
             }
             if emojis.indices.contains(pairIndex) {
