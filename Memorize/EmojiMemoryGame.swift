@@ -16,27 +16,34 @@ class EmojiMemoryGame: ObservableObject {
     static let animalEmojis = ["🐢","🦓","🐋","🐘","🦦","🦜","🐊","🐅","🐃","🦚","🦀","🪼","🦋","🦌","🦒"]
     static let techEmojis = ["📱","🛰️","🔭","📜","⛵️","💡","🚂","🧭","🛫","💻","🎥","🔋","🛜","📺","👓"]
     static var cardColor: Color = .black
+    static var themeName: String = ""
     
     private static func createMemoryGame(themeNum: Int) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: 15) { pairIndex in
             var emojis = [""]
             switch themeNum {
             case 1:
+                themeName = "Sports"
                 emojis = sportEmojis
                 cardColor = .red
             case 2:
+                themeName = "Avatar: The Last Airbender"
                 emojis = atlaEmojis
                 cardColor = .orange
             case 3:
+                themeName = "Food"
                 emojis = foodEmojis
                 cardColor = .yellow
             case 4:
+                themeName = "Halloween"
                 emojis = halloweenEmojis
                 cardColor = .purple
             case 5:
+                themeName = "Animals"
                 emojis = animalEmojis
                 cardColor = .green
             case 6:
+                themeName = "Technology"
                 emojis = techEmojis
                 cardColor = .blue
             default: break
