@@ -19,10 +19,14 @@ struct EmojiMemoryGameView: View {
                     .animation(.default, value: viewModel.cards)
             }
             Spacer()
-            Button("New Game") {
-                viewModel.startNewGame()
+            HStack {
+                Text("Score: 0").font(.title)
+                Spacer()
+                Button("New Game") {
+                    viewModel.startNewGame()
+                }
+                .font(.title)
             }
-            .font(.largeTitle)
         }
         .padding()
     }
