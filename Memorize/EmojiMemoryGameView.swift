@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-    //@State var cardColor: Color = .blue
         
     var body: some View {
         VStack {
@@ -20,7 +19,7 @@ struct EmojiMemoryGameView: View {
             }
             Spacer()
             HStack {
-                Text("Score: 0").font(.title)
+                Text("Score: \(viewModel.score)").font(.title)
                 Spacer()
                 Button("New Game") {
                     viewModel.startNewGame()
