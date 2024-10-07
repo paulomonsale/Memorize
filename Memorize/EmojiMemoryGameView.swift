@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+    typealias Card = MemoryGame<String>.Card
+    
+    @ObservedObject var manager: EmojiMemoryGame
     
     private let aspectRatio: CGFloat = 2/3
     private let spacing: CGFloat = 4
@@ -18,31 +20,48 @@ struct EmojiMemoryGameView: View {
             Text(EmojiMemoryGame.themeName).font(.title)
             cards
                 .foregroundColor(EmojiMemoryGame.cardColor)
-                .animation(.default, value: viewModel.cards)
-            Spacer()
             HStack {
-                Text("Score: \(viewModel.score)").font(.title)
+                score
                 Spacer()
-                Button("New Game") {
-                    viewModel.startNewGame()
-                }
-                .font(.title)
+                newGame
             }
+            .font(.title)
         }
         .padding()
     }
     
+    private var score: some View {
+        Text("Score: \(manager.score)").font(.title)
+            .animation(nil)
+    }
+    
+    private var newGame: some View {
+        Button("New Game") {
+            withAnimation {
+                manager.startNewGame()
+            }
+        }
+    }
+    
+    
     private var cards: some View {
-        AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
+        AspectVGrid(manager.cards, aspectRatio: aspectRatio) { card in
             CardView(card)
                 .padding(spacing)
+                .overlay(FlyingNumber(number: scoreChange(causedBy: card)))
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation {
+                        manager.choose(card)
+                    }
                 }
         }
+    }
+    
+    private func scoreChange(causedBy card: Card) -> Int {
+        return 0
     }
 }
 
 #Preview {
-    EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+    EmojiMemoryGameView(manager: EmojiMemoryGame())
 }

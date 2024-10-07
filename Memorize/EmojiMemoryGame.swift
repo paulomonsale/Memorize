@@ -58,23 +58,23 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
         
-    @Published private var model = createMemoryGame(themeNum: Int.random(in: 1...6))
+    @Published private var game = createMemoryGame(themeNum: Int.random(in: 1...6))
     
     var cards: Array<Card> {
-        model.cards
+        game.cards
     }
     
     var score: Int {
-        model.score
+        game.score
     }
     
     // MARK: - Intents
     
     func startNewGame() {
-        model = EmojiMemoryGame.createMemoryGame(themeNum: Int.random(in: 1...6))
+        game = EmojiMemoryGame.createMemoryGame(themeNum: Int.random(in: 1...6))
     }
         
     func choose(_ card: Card) {
-        model.choose(card)
+        game.choose(card)
     }
 }
