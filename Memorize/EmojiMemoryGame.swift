@@ -21,7 +21,7 @@ class EmojiMemoryGame: ObservableObject {
     static var themeName: String = ""
     
     private static func createMemoryGame(themeNum: Int) -> MemoryGame<String> {
-        return MemoryGame(numberOfPairsOfCards: 2) { pairIndex in
+        return MemoryGame(numberOfPairsOfCards: 6) { pairIndex in
             var emojis = [""]
             switch themeNum {
             case 1:
